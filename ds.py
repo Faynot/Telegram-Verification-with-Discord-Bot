@@ -33,14 +33,14 @@ async def on_message(message):
                 if member:
                     role = disnake.utils.get(guild.roles, id=int(ROLE_ID))
                     await member.add_roles(role)
-                    await message.channel.send("Роль выдана!")
+                    await message.channel.send("The role has been given!")
                 else:
-                    await message.channel.send("Пользователь не найден.")
+                    await message.channel.send("User is not found.")
             else:
-                await message.channel.send("Сервер не найден.")
+                await message.channel.send("Server not found.")
         else:
             await message.channel.send(
-                "Не верный код, пожалуйста, попробуйте ещё раз или обратитесь в поддержку: \n Discord - faynot \n Telegram - @faynotobglotish.")
+                "Invalid code, please try again or contact support: \n write support links.")
     await bot.process_commands(message)
 
 
@@ -52,17 +52,18 @@ async def handle_verification(request):
 
     guild = bot.get_guild(int(GUILD_ID))
     member = disnake.utils.get(guild.members,
-                               name=discord_username)  # Убедитесь, что имя пользователя уникально и существует
+                               name=discord_username)
 
     if member:
         verification_requests[member.id] = code
-        await member.send("Привет! Я бот приватки Cacto0o, если вы не получали никакой код, обратитесь в поддержку:  \n Discord - faynot \n Telegram - @faynotobglotish \nВведите код:")
+        await member.send("Hello! I am a Telegram and Discord verification bot,if you have not received any code, please contact support:\n 
+write support links here\n Enter code:")
         return web.Response(text="Verification request received.")
     else:
         return web.Response(text="User not found.")
 
 
-# Новый эндпоинт для уведомления об удалении пользователя
+
 async def handle_user_removal(request):
     data = await request.json()
     telegram_id = data['telegram_id']
@@ -74,7 +75,7 @@ async def handle_user_removal(request):
     if member:
         role = disnake.utils.get(guild.roles, id=int(ROLE_ID))
         await member.remove_roles(role)
-        print(f"Пользователя {telegram_id} больше нет, роль удалена у {discord_username}")
+        print(f"The user {telegram_id} no longer exists, the role has been removed from {discord_username}")
 
     return web.Response(text="User removal notification received.")
 
