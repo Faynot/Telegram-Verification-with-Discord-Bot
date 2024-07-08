@@ -25,6 +25,7 @@ API_TOKEN = 'PASTE_YOUR_TOKEN'
 ```
 - Go to ![Discord Developer Portal](https://discord.com/developers/applications) and create new application
 - Go to "bot"
+
 ![](https://cdn.discordapp.com/attachments/1100716068588245083/1259853929781661716/image.png?ex=668d31e7&is=668be067&hm=f0eb15d5279ef1f51be333c850684513a1e77cf266228884b73dab5ca73c6a1a&)
 - Copy bot Token
 - Paste this token to ds.py
